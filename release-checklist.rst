@@ -15,9 +15,10 @@ release
 4.  Run ``git add sphinxcontrib``
 5.  Run ``git commit -am 'Update message catalogs'``
 6.  check release version in ``sphinxcontrib/jsmath/version.py``
-7.  build distribtion files: ``python setup.py release sdist bdist_wheel``
-8.  make a release: ``twine upload --sign --identity=<your-identify> dist/<new-version-files>``
-9.  check PyPI page: https://pypi.org/p/sphinxcontrib-jsmath
-10. tagging with version name. e.g.: git tag 1.1.0
-11. bump version in ``sphinxcontrib/jsmath/version.py``
+7.  Run ``make clean``
+8.  build distribtion files: ``python setup.py release sdist bdist_wheel``
+9.  make a release: ``twine upload --sign --identity=<your-identify> dist/<new-version-files>``
+10. check PyPI page: https://pypi.org/p/sphinxcontrib-jsmath
+11. tagging with version name. e.g.: git tag 1.1.0
+12. bump version in ``sphinxcontrib/jsmath/version.py``
 
