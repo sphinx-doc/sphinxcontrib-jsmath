@@ -1,10 +1,10 @@
 [main]
 host = https://www.transifex.com
 
-[sphinx-1.jsmath-pot]
-file_filter = <lang>/LC_MESSAGES/jsmath.po
+[sphinx-1.sphinxcontrib-jsmath-pot]
+file_filter = <lang>/LC_MESSAGES/sphinxcontrib.jsmath.po
 minimum_perc = 0
-source_file = jsmath.pot
+source_file = sphinxcontrib.jsmath.pot
 source_lang = en
 type = PO
 
