@@ -38,7 +38,7 @@ clean-buildfiles:
 	rm -rf build
 
 .PHONY: clean-distfiles
-clean-dist:files
+clean-distfiles:
 	rm -rf dist/
 
 .PHONY: clean-mypyfiles
