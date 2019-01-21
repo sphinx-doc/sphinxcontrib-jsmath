@@ -78,7 +78,7 @@ def setup(app: Sphinx) -> Dict[str, Any]:
                                (html_visit_displaymath, None))
 
     app.add_config_value('jsmath_path', '', False)
-    app.connect('env-check-consistency', install_jsmath)
+    app.connect('env-updated', install_jsmath)
     return {
         'version': __version__,
         'parallel_read_safe': True,
