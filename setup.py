@@ -10,8 +10,11 @@ via JavaScript.
 extras_require = {
     'test': [
         'pytest',
+    ],
+    'lint': [
         'flake8',
         'mypy',
+        'docutils-stubs',
     ],
 }
 
