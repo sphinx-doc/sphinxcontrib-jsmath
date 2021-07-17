@@ -14,7 +14,7 @@ import pytest
 @pytest.mark.sphinx('html', testroot='basic')
 def test_basic(app, status, warning):
     app.builder.build_all()
-    content = (app.outdir / 'math.html').text()
+    content = (app.outdir / 'math.html').read_text()
     print(content)
     assert '<div class="math notranslate nohighlight">\nE = mc^2</div>' in content
     assert ('<span class="eqno">(1)<a class="headerlink" href="#equation-pythagorean" '
@@ -34,7 +34,7 @@ def test_basic(app, status, warning):
 def test_numfig_enabled(app, status, warning):
     app.builder.build_all()
 
-    content = (app.outdir / 'math.html').text()
+    content = (app.outdir / 'math.html').read_text()
     assert '<div class="math notranslate nohighlight">\nE = mc^2</div>' in content
     assert ('<span class="eqno">(1.1)<a class="headerlink" href="#equation-pythagorean" '
             'title="Permalink to this equation">¶</a></span>'
@@ -52,5 +52,5 @@ def test_numfig_enabled(app, status, warning):
 def test_disabled_when_equations_not_found(app, status, warning):
     app.builder.build_all()
 
-    content = (app.outdir / 'index.html').text()
+    content = (app.outdir / 'index.html').read_text()
     assert 'jsmath.js' not in content
