@@ -14,6 +14,7 @@ extras_require = {
     'lint': [
         'flake8',
         'mypy',
+        'types-setuptools',
         'docutils-stubs',
     ],
 }
