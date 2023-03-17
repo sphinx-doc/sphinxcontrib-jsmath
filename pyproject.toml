@@ -71,3 +71,7 @@ include = [
     "tests/",
     "tox.ini",
 ]
+
+[tool.mypy]
+ignore_missing_imports = true
+strict_optional = false
