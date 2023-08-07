@@ -6,13 +6,13 @@
     :license: BSD, see LICENSE for details.
 """
 
-import pytest
+from pathlib import Path
 
-from sphinx.testing.path import path
+import pytest
 
 pytest_plugins = 'sphinx.testing.fixtures'
 
 
 @pytest.fixture(scope='session')
 def rootdir():
-    return path(__file__).parent.abspath() / 'roots'
+    return Path(__file__).resolve().parent / 'roots'
