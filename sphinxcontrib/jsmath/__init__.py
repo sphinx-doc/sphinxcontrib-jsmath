@@ -10,7 +10,7 @@
 """
 
 from os import path
-from typing import Any, Dict, cast
+from typing import Any, cast
 
 from docutils import nodes
 from sphinx.application import Sphinx
@@ -77,7 +77,7 @@ def install_jsmath(app: Sphinx, env: BuildEnvironment) -> None:
         builder.add_js_file(app.config.jsmath_path)  # type: ignore
 
 
-def setup(app: Sphinx) -> Dict[str, Any]:
+def setup(app: Sphinx) -> dict[str, Any]:
     app.require_sphinx('2.0')
     app.add_message_catalog(__name__, path.join(package_dir, 'locales'))
     app.add_html_math_renderer('jsmath',
