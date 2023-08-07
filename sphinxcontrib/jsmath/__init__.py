@@ -1,13 +1,4 @@
-"""
-    sphinxcontrib.jsmath
-    ~~~~~~~~~~~~~~~~~~~~
-
-    Set up everything for use of JSMath to display math in HTML
-    via JavaScript.
-
-    :copyright: Copyright 2007-2019 by the Sphinx team, see AUTHORS.
-    :license: BSD, see LICENSE for details.
-"""
+"""Set up everything for use of JSMath to display math in HTML via JavaScript."""
 
 from os import path
 from typing import Any, cast
