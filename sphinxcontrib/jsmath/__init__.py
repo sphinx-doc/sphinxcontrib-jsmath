@@ -69,7 +69,7 @@ def install_jsmath(app: Sphinx, env: BuildEnvironment) -> None:
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
-    app.require_sphinx('2.0')
+    app.require_sphinx('5.0')
     app.add_message_catalog(__name__, path.join(package_dir, 'locales'))
     app.add_html_math_renderer('jsmath',
                                (html_visit_math, None),
