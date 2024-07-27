@@ -1,13 +1,17 @@
 *.pyc
-*.egg
-*.so
-*.swp
 
 .DS_Store
+idea/
+.vscode/
+
 .mypy_cache/
+.pytest_cache/
+.ruff_cache/
 .tags
 .tox/
 
+.venv/
+venv/
+
 build/
 dist/
-sphinxcontrib_jsmath.egg-info/
