@@ -47,7 +47,7 @@ clean-mypyfiles:
 
 .PHONY: style-check
 style-check:
-	@flake8
+	@ruff check
 
 .PHONY: type-check
 type-check:

@@ -1,17 +1,21 @@
 """Set up everything for use of JSMath to display math in HTML via JavaScript."""
 
+from __future__ import annotations
+
 from os import path
-from typing import Any, cast
+from typing import TYPE_CHECKING, Any, cast
 
 from docutils import nodes
-from sphinx.application import Sphinx
 from sphinx.builders.html import StandaloneHTMLBuilder
 from sphinx.domains.math import MathDomain
-from sphinx.environment import BuildEnvironment
 from sphinx.errors import ExtensionError
 from sphinx.locale import get_translation
 from sphinx.util.math import get_node_equation_number
-from sphinx.writers.html import HTMLTranslator
+
+if TYPE_CHECKING:
+    from sphinx.application import Sphinx
+    from sphinx.environment import BuildEnvironment
+    from sphinx.writers.html import HTMLTranslator
 
 __version__ = '1.0.2'
 __version_info__ = (1, 0, 2)
@@ -39,7 +43,7 @@ def html_visit_displaymath(self: HTMLTranslator, node: nodes.math_block) -> None
             # necessary to e.g. set the id property correctly
             if node['number']:
                 number = get_node_equation_number(self, node)
-                self.body.append('<span class="eqno">(%s)' % number)
+                self.body.append(f'<span class="eqno">({number})')
                 self.add_permalink_ref(node, _('Permalink to this equation'))
                 self.body.append('</span>')
             self.body.append(self.starttag(node, 'div', CLASS='math notranslate nohighlight'))
@@ -55,17 +59,17 @@ def html_visit_displaymath(self: HTMLTranslator, node: nodes.math_block) -> None
 
 
 def install_jsmath(app: Sphinx, env: BuildEnvironment) -> None:
-    if app.builder.format != 'html' or app.builder.math_renderer_name != 'jsmath':  # type: ignore  # NOQA
+    if app.builder.format != 'html' or app.builder.math_renderer_name != 'jsmath':  # type: ignore[attr-defined]
         return
-    if not app.config.jsmath_path:  # type: ignore
-        raise ExtensionError('jsmath_path config value must be set for the '
-                             'jsmath extension to work')
+    if not app.config.jsmath_path:
+        msg = 'jsmath_path config value must be set for the jsmath extension to work'
+        raise ExtensionError(msg)
 
     builder = cast(StandaloneHTMLBuilder, app.builder)
     domain = cast(MathDomain, env.get_domain('math'))
     if domain.has_equations():
         # Enable jsmath only if equations exists
-        builder.add_js_file(app.config.jsmath_path)  # type: ignore
+        builder.add_js_file(app.config.jsmath_path)
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
