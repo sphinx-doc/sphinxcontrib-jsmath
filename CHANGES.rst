@@ -1,6 +1,9 @@
-Release 1.0.2 (unreleased)
+Release 2.0.0 (unreleased)
 ==========================
 
+* Adopt Ruff
+* Tighten MyPy settings
+* Update GitHub actions versions
 * Remove Sphinx as a required dependency, as circular dependencies may cause
   failure with package managers that expect a directed acyclic graph (DAG)
   of dependencies.
