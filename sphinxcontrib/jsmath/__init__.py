@@ -83,7 +83,7 @@ def setup(app: Sphinx) -> dict[str, Any]:
                                (html_visit_math, None),
                                (html_visit_displaymath, None))
 
-    app.add_config_value('jsmath_path', '', False)
+    app.add_config_value('jsmath_path', '', '')
     app.connect('html-page-context', install_jsmath)
     return {
         'version': __version__,
