@@ -9,6 +9,8 @@ Release 2.0.0 (unreleased)
   of dependencies.
 * Drop support for Python 3.5, 3.6, 3.7, and 3.8
 * Raise minimum required Sphinx version to 5.0
+* Replace `domain.has_equations()` with `context['has_maths_elements']`
+  Patch by Dmitry Shachnev.
 
 Release 1.0.1 (2019-01-22)
 ==========================
