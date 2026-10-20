@@ -15,8 +15,8 @@ if TYPE_CHECKING:
     from sphinx.application import Sphinx
     from sphinx.writers.html import HTMLTranslator
 
-__version__ = '1.0.2'
-__version_info__ = (1, 0, 2)
+__version__ = '2.0.0'
+__version_info__ = (2, 0, 0)
 
 package_dir = path.abspath(path.dirname(__file__))
 

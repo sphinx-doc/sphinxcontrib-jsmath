@@ -1,4 +1,4 @@
-Release 2.0.0 (unreleased)
+Release 2.0.0 (2026-10-20)
 ==========================
 
 * Adopt Ruff
