@@ -7,14 +7,12 @@ from typing import TYPE_CHECKING, Any, cast
 
 from docutils import nodes
 from sphinx.builders.html import StandaloneHTMLBuilder
-from sphinx.domains.math import MathDomain
 from sphinx.errors import ExtensionError
 from sphinx.locale import get_translation
 from sphinx.util.math import get_node_equation_number
 
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
-    from sphinx.environment import BuildEnvironment
     from sphinx.writers.html import HTMLTranslator
 
 __version__ = '1.0.2'
@@ -58,7 +56,13 @@ def html_visit_displaymath(self: HTMLTranslator, node: nodes.math_block) -> None
     raise nodes.SkipNode
 
 
-def install_jsmath(app: Sphinx, env: BuildEnvironment) -> None:
+def install_jsmath(
+    app: Sphinx,
+    pagename: str,
+    templatename: str,
+    context: dict[str, Any],
+    event_arg: Any,
+) -> None:
     if app.builder.format != 'html' or app.builder.math_renderer_name != 'jsmath':  # type: ignore[attr-defined]
         return
     if not app.config.jsmath_path:
@@ -66,8 +70,8 @@ def install_jsmath(app: Sphinx, env: BuildEnvironment) -> None:
         raise ExtensionError(msg)
 
     builder = cast(StandaloneHTMLBuilder, app.builder)
-    domain = cast(MathDomain, env.get_domain('math'))
-    if domain.has_equations():
+    page_has_equations = context.get('has_maths_elements', True)
+    if app.registry.html_assets_policy == 'always' or page_has_equations:
         # Enable jsmath only if equations exists
         builder.add_js_file(app.config.jsmath_path)
 
@@ -80,7 +84,7 @@ def setup(app: Sphinx) -> dict[str, Any]:
                                (html_visit_displaymath, None))
 
     app.add_config_value('jsmath_path', '', False)
-    app.connect('env-updated', install_jsmath)
+    app.connect('html-page-context', install_jsmath)
     return {
         'version': __version__,
         'parallel_read_safe': True,
